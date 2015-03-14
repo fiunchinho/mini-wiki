@@ -4,7 +4,8 @@
     "require": {
         "php": ">=5.5",
         "silex/silex": "~1.0",
-        "symfony/debug": "~2.6"
+        "symfony/debug": "~2.6",
+        "symfony/twig-bridge": "~2.6"
     },
     "autoload": {
         "psr-4": { "MiniWiki\\": "src/MiniWiki" }
