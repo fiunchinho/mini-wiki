@@ -20,6 +20,13 @@ $app->get('/admin/{slug}', function (Request $request, $slug) use ($app) {
 ->bind('article_admin_get');
 
 $app->post('/admin/{slug}', function (Request $request, $slug) use ($app) {
+    $current_article= $app['twig']->render('article.html',['text' => $app['wiki']->getArticle($slug)]);
+    $current_etag   = md5($current_article);
+    $incoming_etag  = $request->headers->get('if-match');
+    if (!is_null($incoming_etag) && $incoming_etag !== $current_etag) {
+        $app->abort(Response::HTTP_PRECONDITION_FAILED, "You didn't have the latest version of the article");
+    }
+
     if ($app['wiki']->writeArticle($slug, $request->request->get('text'))) {
         return $app->redirect($app["url_generator"]->generate("article_get", ['slug' => $slug]));
     }else{
