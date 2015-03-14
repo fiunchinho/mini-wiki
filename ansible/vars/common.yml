@@ -1,0 +1,7 @@
+---
+    php_ppa: php5-5.6
+    doc_root: /var/www
+    sys_packages: ["git-core", "vim"]
+    dist: precise
+    php_packages: ["php5-xdebug"]
+    pecl_packages: []

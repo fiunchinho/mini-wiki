@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head><title>Latest_plane_crash</title>
+<body>
+<form action="{{ path('article_admin_post', {slug: slug}) }}" method="POST">
+    <input type="submit" value="Submit"><br />
+    <textarea name="text" rows="100" cols="100">{{text}}</textarea>
+</form>
+</body>
+</html>
