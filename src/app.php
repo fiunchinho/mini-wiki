@@ -10,5 +10,6 @@ $app = new Application();
 $app->register(new UrlGeneratorServiceProvider());
 $app->register(new TwigServiceProvider());
 $app->register(new WikiServiceProvider());
+$app->register(new HttpCacheServiceProvider());
 
 return $app;

@@ -24,3 +24,13 @@ $app->post('/admin/{slug}', function (Request $request, $slug) use ($app) {
     }
 })
 ->bind('article_admin_post');
+
+$app->after(function (Request $request, Response $response) use ($app) {
+    $response->setCache([
+        'max_age'       => $app['http_cache.max_age_seconds'],
+        's_maxage'      => $app['http_cache.max_age_seconds'],
+        'public'        => true
+    ]);
+    $response->headers->set('ETag', md5($response->getContent()));
+    $response->isNotModified($request);
+});
