@@ -4,13 +4,16 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 $app->get('/article/{slug}', function (Request $request, $slug) use ($app) {
-    return new Response($app['wiki']->getArticle($slug));
+    return $app['twig']->render(
+        'article.html',
+        ['text' => $app['wiki']->getArticle($slug)]
+    );
 })
 ->bind('article_get');
 
 $app->get('/admin/{slug}', function (Request $request, $slug) use ($app) {    
     return $app['twig']->render(
-        'index.html',
+        'admin.html',
         ['slug' => $slug, 'text' => $app['wiki']->getArticle($slug)]
     );
 })
