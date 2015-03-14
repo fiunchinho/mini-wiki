@@ -1,16 +1,10 @@
 {
     "name": "fiunchinho/mini-wiki",
-    "description": "",
-    "type": "project",
+    "description": "Mini wiki that shows only one article, using a file.",
     "require": {
         "php": ">=5.5",
         "silex/silex": "~1.0",
-        "silex/web-profiler": "~1.0",
-        "symfony/class-loader": "~2.3",
-        "symfony/config": "~2.3",
-        "symfony/debug": "~2.3",
-        "symfony/finder": "~2.3",
-        "symfony/twig-bridge": "~2.3"
+        "symfony/debug": "~2.6"
     },
     "autoload": {
         "psr-4": { "MiniWiki\\": "src/MiniWiki" }
