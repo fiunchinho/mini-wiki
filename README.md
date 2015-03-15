@@ -1,14 +1,14 @@
 # Installation
-Clone the repo and start vagrant
+Clone the repo and start vagrant (it will provision the server with Ansible)
 
     $ vagrant up
 
-Once vagrant is up and running, log into the machine and go to the document root so you can install the dependencies:
+Once vagrant is up and running, log into the machine and go to the document root so you can install the dependencies using [Composer](https://getcomposer.org/download/):
 
     $ cd /var/www/miniwiki
     $ composer install
 
-The server is listening at [http://192.168.33.99/article/Latest_plane_crash].
+The server is listening at http://192.168.33.99/article/Latest_plane_crash.
 
 # Usage
 - GET /article/{slug}: prints the article
