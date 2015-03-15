@@ -5,6 +5,7 @@ namespace MiniWiki;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class WikiController
 {
@@ -25,7 +26,7 @@ class WikiController
 
     public function post(Request $request, $slug)
     {
-        $this->checkConditionalPost($request);
+        $this->checkConditionalPost($request, $slug);
 
         if ($this->wiki->writeArticle($slug, $request->request->get('text'))) {
             return $this->redirect($this->url_generator->generate("article_get", ['slug' => $slug]));
@@ -47,7 +48,7 @@ class WikiController
         return new RedirectResponse($url, Response::HTTP_SEE_OTHER);
     }
 
-    private function checkConditionalPost(Request $request)
+    private function checkConditionalPost(Request $request, $slug)
     {
         $incoming_etag  = $request->headers->get('if-match');
         if ((!is_null($incoming_etag)) && ($incoming_etag !== md5($this->get($slug)))) {
